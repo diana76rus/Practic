@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ip36Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Авторизация">
+    <Key>
+      <PropertyRef Name="Код пользователя" />
+    </Key>
+    <Property Name="Код пользователя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Логин" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="Пароль" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="Фамилия" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Изображение" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Имя" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Авторы">
+    <Key>
+      <PropertyRef Name="Код Автора" />
+    </Key>
+    <Property Name="Код Автора" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Фамилия" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Имя" Type="nvarchar" MaxLength="30" />
+    <Property Name="Примечание" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Авторы книги">
+    <Key>
+      <PropertyRef Name="Код Автора книги" />
+    </Key>
+    <Property Name="Код Автора книги" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Кода автора" Type="int" />
+    <Property Name="Код книги" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Выдача">
+    <Key>
+      <PropertyRef Name="Номер Выдачи" />
+    </Key>
+    <Property Name="Номер Выдачи" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Дата выдачи" Type="date" Nullable="false" />
+    <Property Name="Дата Возврата" Type="date" Nullable="false" />
+    <Property Name="Сдано" Type="date" Nullable="false" />
+    <Property Name="Срок" Type="int" Nullable="false" />
+    <Property Name="Номер читательного билета" Type="int" />
+    <Property Name="Код книги" Type="int" />
+    <Property Name="Название книги" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Издательство">
+    <Key>
+      <PropertyRef Name="Издательство" />
+    </Key>
+    <Property Name="Издательство" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Город" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Название" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Книги">
+    <Key>
+      <PropertyRef Name="Код книги" />
+    </Key>
+    <Property Name="Код книги" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Название" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Раздел" Type="int" Nullable="false" />
+    <Property Name="Издательство" Type="int" Nullable="false" />
+    <Property Name="Год издательства" Type="int" Nullable="false" />
+    <Property Name="Место Хранения" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="Изображение" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Разделы">
+    <Key>
+      <PropertyRef Name="Раздел" />
+    </Key>
+    <Property Name="Раздел" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Название" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Читатели">
+    <Key>
+      <PropertyRef Name="Номер читательского билеты" />
+    </Key>
+    <Property Name="Номер читательского билеты" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Фамилия" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Имя" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Отчество" Type="nvarchar" MaxLength="30" />
+    <Property Name="Адрес" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="Телефон" Type="nchar" MaxLength="30" />
+  </EntityType>
+  <Association Name="FK_Авторы книги_Авторы">
+    <End Role="Авторы" Type="Self.Авторы" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Авторы книги" Type="Self.Авторы книги" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Авторы">
+        <PropertyRef Name="Код Автора" />
+      </Principal>
+      <Dependent Role="Авторы книги">
+        <PropertyRef Name="Кода автора" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Авторы книги_Книги1">
+    <End Role="Книги" Type="Self.Книги" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Авторы книги" Type="Self.Авторы книги" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Книги">
+        <PropertyRef Name="Код книги" />
+      </Principal>
+      <Dependent Role="Авторы книги">
+        <PropertyRef Name="Код книги" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Выдача_Книги1">
+    <End Role="Книги" Type="Self.Книги" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Выдача" Type="Self.Выдача" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Книги">
+        <PropertyRef Name="Код книги" />
+      </Principal>
+      <Dependent Role="Выдача">
+        <PropertyRef Name="Код книги" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Выдача_Читатели">
+    <End Role="Читатели" Type="Self.Читатели" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Выдача" Type="Self.Выдача" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Читатели">
+        <PropertyRef Name="Номер читательского билеты" />
+      </Principal>
+      <Dependent Role="Выдача">
+        <PropertyRef Name="Номер читательного билета" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Книги1_Издательство">
+    <End Role="Издательство" Type="Self.Издательство" Multiplicity="1" />
+    <End Role="Книги" Type="Self.Книги" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Издательство">
+        <PropertyRef Name="Издательство" />
+      </Principal>
+      <Dependent Role="Книги">
+        <PropertyRef Name="Издательство" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Книги1_Разделы">
+    <End Role="Разделы" Type="Self.Разделы" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Книги" Type="Self.Книги" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Разделы">
+        <PropertyRef Name="Раздел" />
+      </Principal>
+      <Dependent Role="Книги">
+        <PropertyRef Name="Раздел" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Хранилище ip36ModelContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Авторизация" EntityType="Self.Авторизация" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Авторы" EntityType="Self.Авторы" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Авторы книги" EntityType="Self.Авторы книги" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Выдача" EntityType="Self.Выдача" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Издательство" EntityType="Self.Издательство" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Книги" EntityType="Self.Книги" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Разделы" EntityType="Self.Разделы" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Читатели" EntityType="Self.Читатели" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Авторы книги_Авторы" Association="Self.FK_Авторы книги_Авторы">
+      <End Role="Авторы" EntitySet="Авторы" />
+      <End Role="Авторы книги" EntitySet="Авторы книги" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Авторы книги_Книги1" Association="Self.FK_Авторы книги_Книги1">
+      <End Role="Книги" EntitySet="Книги" />
+      <End Role="Авторы книги" EntitySet="Авторы книги" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Выдача_Книги1" Association="Self.FK_Выдача_Книги1">
+      <End Role="Книги" EntitySet="Книги" />
+      <End Role="Выдача" EntitySet="Выдача" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Выдача_Читатели" Association="Self.FK_Выдача_Читатели">
+      <End Role="Читатели" EntitySet="Читатели" />
+      <End Role="Выдача" EntitySet="Выдача" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Книги1_Издательство" Association="Self.FK_Книги1_Издательство">
+      <End Role="Издательство" EntitySet="Издательство" />
+      <End Role="Книги" EntitySet="Книги" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Книги1_Разделы" Association="Self.FK_Книги1_Разделы">
+      <End Role="Разделы" EntitySet="Разделы" />
+      <End Role="Книги" EntitySet="Книги" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

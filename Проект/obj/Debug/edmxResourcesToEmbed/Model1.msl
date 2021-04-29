@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ip36ModelContainer" CdmEntityContainer="Entities8">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ip36Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Авторизация">
+      <EntityTypeMapping TypeName="ip36Model.Авторизация">
+        <MappingFragment StoreEntitySet="Авторизация">
+          <ScalarProperty Name="Код_пользователя" ColumnName="Код пользователя" />
+          <ScalarProperty Name="Логин" ColumnName="Логин" />
+          <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Изображение" ColumnName="Изображение" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Авторы">
+      <EntityTypeMapping TypeName="ip36Model.Авторы">
+        <MappingFragment StoreEntitySet="Авторы">
+          <ScalarProperty Name="Код_Автора" ColumnName="Код Автора" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Примечание" ColumnName="Примечание" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Авторы_книги">
+      <EntityTypeMapping TypeName="ip36Model.Авторы_книги">
+        <MappingFragment StoreEntitySet="Авторы книги">
+          <ScalarProperty Name="Код_Автора_книги" ColumnName="Код Автора книги" />
+          <ScalarProperty Name="Кода_автора" ColumnName="Кода автора" />
+          <ScalarProperty Name="Код_книги" ColumnName="Код книги" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Выдача">
+      <EntityTypeMapping TypeName="ip36Model.Выдача">
+        <MappingFragment StoreEntitySet="Выдача">
+          <ScalarProperty Name="Номер_Выдачи" ColumnName="Номер Выдачи" />
+          <ScalarProperty Name="Дата_выдачи" ColumnName="Дата выдачи" />
+          <ScalarProperty Name="Дата_Возврата" ColumnName="Дата Возврата" />
+          <ScalarProperty Name="Сдано" ColumnName="Сдано" />
+          <ScalarProperty Name="Срок" ColumnName="Срок" />
+          <ScalarProperty Name="Номер_читательного_билета" ColumnName="Номер читательного билета" />
+          <ScalarProperty Name="Код_книги" ColumnName="Код книги" />
+          <ScalarProperty Name="Название_книги" ColumnName="Название книги" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Издательство">
+      <EntityTypeMapping TypeName="ip36Model.Издательство">
+        <MappingFragment StoreEntitySet="Издательство">
+          <ScalarProperty Name="Издательство1" ColumnName="Издательство" />
+          <ScalarProperty Name="Город" ColumnName="Город" />
+          <ScalarProperty Name="Название" ColumnName="Название" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Книги">
+      <EntityTypeMapping TypeName="ip36Model.Книги">
+        <MappingFragment StoreEntitySet="Книги">
+          <ScalarProperty Name="Код_книги" ColumnName="Код книги" />
+          <ScalarProperty Name="Название" ColumnName="Название" />
+          <ScalarProperty Name="Раздел" ColumnName="Раздел" />
+          <ScalarProperty Name="Издательство" ColumnName="Издательство" />
+          <ScalarProperty Name="Год_издательства" ColumnName="Год издательства" />
+          <ScalarProperty Name="Место_Хранения" ColumnName="Место Хранения" />
+          <ScalarProperty Name="Изображение" ColumnName="Изображение" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Разделы">
+      <EntityTypeMapping TypeName="ip36Model.Разделы">
+        <MappingFragment StoreEntitySet="Разделы">
+          <ScalarProperty Name="Раздел" ColumnName="Раздел" />
+          <ScalarProperty Name="Название" ColumnName="Название" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Читатели">
+      <EntityTypeMapping TypeName="ip36Model.Читатели">
+        <MappingFragment StoreEntitySet="Читатели">
+          <ScalarProperty Name="Номер_читательского_билеты" ColumnName="Номер читательского билеты" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+          <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище ip36Model.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище ip36Model.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище ip36Model.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище ip36Model.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ip36Model.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище ip36Model.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ip36Model.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище ip36Model.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище ip36Model.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
